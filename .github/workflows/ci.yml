@@ -12,17 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Check what files exist
-        run: ls -lah
-
       - name: Get the version number
         run: echo "VERNUM=$(awk -F'\"' '/version_number/ { print $4 }' manifest.json)" >> $GITHUB_ENV
 
+      - name: Get the zip file name
+        run: echo "ZIPNAME=$( echo ${{ github.repository }} | awk -F'/' '{ print $1}')-${{ env.VERNUM }}.zip" >> $GITHUB_ENV
+
       - name: Compress all files into an archive named {repository}-{version}.zip
-        run: zip -r $( echo ${{ github.repository }} | awk -F'/' '{ print $1}')-${{ env.VERNUM }}.zip .
+        run: zip -r ${{ env.ZIPNAME }} .
 
       - name: Upload artifact as release asset
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ github.repository }}-${{ env.VERNUM }}.zip
-          path: ${{ github.repository }}-${{ env.VERNUM }}.zip
+          name: ${{ env.ZIPNAME }}
+          path: ${{ env.ZIPNAME }}
