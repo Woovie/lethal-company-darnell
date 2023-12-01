@@ -1,8 +1,8 @@
 {
   "name": "Darnell_Suit",
-  "version_number": "0.0.2",
+  "version_number": "1.0.0",
   "website_url": "",
-  "description": "Adds Darnells as a wearable suit.",
+  "description": "Adds Darnells and Mike as a wearable suit.",
   "dependencies": [
     "x753-More_Suits-1.3.1",
     "BepInEx-BepInExPack-5.4.2100"
